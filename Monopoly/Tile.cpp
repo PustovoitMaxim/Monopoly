@@ -1,39 +1,10 @@
 #include "Tile.h"
-/*enum class TileType {
-    Start,
-    Railroad,
-    Commercial_services,
-    Property,
-    Chance,
-    Community_Chest,
-    Tax,
-    Prison,
-};
-enum class Property_rank {
-    Browm,
-    Blue,
-    Purple,
-    Red,
-    Green,
-    Orange,
-    Yellow,
-    Sky_blue,
-};
 
-class Tile {
-};
-class Property : Tile {
-private:
-    int cost;
-    //Property_rank rank;
-    int house_price;
-public:
-    int set_price(Property_rank rank) {
-        cost = static_cast<int>(rank);
-    }
-
-};
-*/
 Tile::Tile() {
 
+}
+
+Street::Street(StreetColors color, const string& caption, const vector<unsigned short> rent, unsigned short price):
+	m_price(price), m_ownership(nullptr), m_color(color), m_rent(rent), m_caption(caption)
+{
 }
