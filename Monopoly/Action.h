@@ -1,20 +1,32 @@
 #pragma once
 #include"Player.h"
+#include "Game.h"
 class Action {
 public:
-	virtual void invoke(Player& p) = 0;
+	virtual void invoke(int ind,Game& game) = 0;
 };
 
 class Pay2BankAction:public Action {
 public:
 	Pay2BankAction(unsigned short sum);
-	virtual void invoke(Player& p);
+	void invoke(int ind, Game& game);
 private:
 	unsigned short m_sum;
 };
 
-class EmptyAction {
+class EmptyAction: public Action {
 public:
-	virtual void invoke(Player& p);
+	void invoke(int ind, Game& game);
 private:
+};
+class OwnerAction :public Action {
+public:
+	void invoke(int ind, Game& game);
+};
+class TakeChance : public Action {
+public:
+	void invoke(int current_player, Game& game);
+};
+class TakeCommChest: public Action{
+	void invoke(int current_player, Game& game);
 };
