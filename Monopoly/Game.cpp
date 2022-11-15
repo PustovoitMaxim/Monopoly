@@ -94,3 +94,15 @@ Action& Game::get_next_CommChest(void) {
 	m_comunity_chest.pop_front();
 	return *m_comunity_chest.back();
 }
+unsigned short Game::getPlayersCount() {
+	return this->m_players.size();
+}
+void Game::move_player_int(int ind, int tiles_to_move) {
+	m_players[ind].pos = (m_players[ind].pos+tiles_to_move) % 40;
+	m_field[m_players[ind].pos]->get_action().invoke(ind, *this);
+}
+void Game::move_player_abs(int ind, unsigned char abs_pos) {
+	m_players[ind].pos = abs_pos;
+	m_field[m_players[ind].pos]->get_action().invoke(ind, *this);
+}
+void Game::move_player_until(int ind, const std::function<bool(const Tile&)>& f){}
