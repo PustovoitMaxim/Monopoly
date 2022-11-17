@@ -22,6 +22,7 @@ void EmptyAction::invoke(unsigned char player_ind, Game& game){}
 void TakeChance::invoke(unsigned char player_ind, Game& game) {
 	game.get_next_chance().invoke(player_ind, game);
 }
+
 void TakeCommChest::invoke(unsigned char player_ind, Game& game) {
 	game.get_next_CommChest().invoke(player_ind, game);
 }
@@ -29,6 +30,16 @@ money_from_players::money_from_players(unsigned short sum) :
 	m_sum(sum) {
 
 }
+Chance_Card::Chance_Card(string text, Action* action) :
+	m_text(text), m_action(action)
+{
+}
+
+Commuity_card::Commuity_card(string text, Action* action) :
+	m_text(text), m_action(action) 
+{
+}
+
 void money_from_players::invoke(unsigned char player_ind, Game& game) {
 	for (int i = 0; i < game.getPlayersCount(); i++) {
 		if (i != player_ind)

@@ -9,8 +9,15 @@ class Tile {
 public:
 	enum class Tile_Type {
 		Street,
-		Action_tile,
+		Start,
+		CommChest,
+		Tax,
 		RailRoad,
+		Chance,
+		Jail,
+		Service,
+		FreeParking,
+		GoToJail,
 	};
 	virtual Action& get_action(void) = 0;
 	virtual Player* get_ownership(void)=0;
@@ -46,7 +53,7 @@ private:
 };
 class Action_tile : public Tile {
 public:
-	Action_tile(Action* Action);
+	Action_tile(Tile_Type type, Action* Action);
 	Action& get_action(void);
 	virtual Player* get_ownership(void);
 public:

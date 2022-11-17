@@ -16,20 +16,31 @@ Action& Street::get_action(void) {
 Action& Action_tile::get_action(void) {
 	return *m_action;
 }
-Action_tile::Action_tile(Action* Action) :
-	Tile(Tile_Type::Action_tile), m_action(Action)
+Action_tile::Action_tile(Tile_Type type, Action* Action) :
+	Tile(type), m_action(Action)
 {
 }
-RailRoad::RailRoad(const vector<unsigned short>& rent, const string caption):
-	Tile(Tile_Type::RailRoad),m_price(200), m_rent(rent), m_ownership(nullptr), m_caption(caption) {
-}
+
 Player* Street::get_ownership(void) {
 	return m_ownership;
 }
-Player* Action_tile::get_ownership(void) { return nullptr; }
-Player* RailRoad::get_ownership(void) {
+
+Player* Action_tile::get_ownership(void)
+{
+	return nullptr;
+}
+
+RailRoad::RailRoad(const vector<unsigned short>& rent, const string caption) :
+	Tile(Tile_Type::RailRoad), m_price(200), m_rent(rent), m_ownership(nullptr), m_caption(caption)
+{
+}
+
+Player* RailRoad::get_ownership(void)
+{
 	return m_ownership;
 }
-Action& RailRoad::get_action(void) {
+
+Action& RailRoad::get_action(void)
+{
 	return *m_action;
 }

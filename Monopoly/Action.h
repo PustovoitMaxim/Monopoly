@@ -1,8 +1,8 @@
 #pragma once
 #include"Player.h"
-
+#include<string>
 class Game;
-
+using namespace std;
 class Action {
 public:
 	virtual void invoke(unsigned char player_ind,Game& game) = 0;
@@ -42,6 +42,24 @@ class TakeChance : public Action {
 public:
 	virtual void invoke(unsigned char player_ind, Game& game);
 };
+
 class TakeCommChest: public Action{
+public:
 	virtual void invoke(unsigned char player_ind, Game& game);
+};
+
+class Chance_Card :public Action {
+public:
+	Chance_Card(string text, Action* action);
+private:
+	string m_text;
+	Action* m_action;
+};
+
+class Commuity_card : public Action {
+public:
+	Commuity_card(string text, Action* action);
+private:
+	string m_text;
+	Action* m_action;
 };
