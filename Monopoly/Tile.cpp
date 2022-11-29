@@ -1,4 +1,5 @@
 #include "Tile.h"
+#include "Action.h"
 #include <iostream>
 Tile::Tile(Tile_Type t) :
 	m_type(t){

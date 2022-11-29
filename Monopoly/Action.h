@@ -1,5 +1,6 @@
 #pragma once
 #include"Player.h"
+#include"Tile.h"
 #include<string>
 class Game;
 using namespace std;
@@ -51,15 +52,34 @@ public:
 class Chance_Card :public Action {
 public:
 	Chance_Card(string text, Action* action);
+	virtual void invoke(unsigned char player_ind, Game& game);
 private:
 	string m_text;
-	Action* m_action;
+	std::unique_ptr<Action> m_action;
 };
-
 class Commuity_card : public Action {
 public:
 	Commuity_card(string text, Action* action);
+	virtual void invoke(unsigned char player_ind, Game& game);
 private:
 	string m_text;
-	Action* m_action;
+	std::unique_ptr<Action> m_action;
 };
+class Move_Abs_Action : public Action {
+public:
+	Move_Abs_Action(unsigned char to);
+	virtual void invoke(unsigned char player_ind, Game& game);
+
+private:
+	unsigned char m_to;
+};
+
+class MoveToNearest : public Action {
+public:
+	MoveToNearest(Tile::Tile_Type tile_type);	
+	virtual void invoke(unsigned char player_ind, Game& game);
+
+private:
+	Tile::Tile_Type m_tile_type;
+};
+

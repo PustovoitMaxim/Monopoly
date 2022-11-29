@@ -52,34 +52,34 @@ vector<unique_ptr<Tile>> create_field(void)
 }
 list<unique_ptr<Action>> create_chance_cards(void) {
 	list<unique_ptr<Action>> chance_cards;
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
-	chance_cards.push_back(unique_ptr<Action>(new TakeChance()));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт",new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0)));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
 	return chance_cards;
 }
 list<unique_ptr<Action>> create_community_cards(void) {
 	list<unique_ptr<Action>> community_cards;
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
-	community_cards.push_back(unique_ptr<Action>(new TakeCommChest()));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
+	community_cards.push_back(unique_ptr<Action>(new Commuity_card("Пройдите на старт", new Move_Abs_Action(0))));
 	return community_cards;
 }
 Game::Game(unsigned char count) :

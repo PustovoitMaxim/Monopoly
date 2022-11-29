@@ -1,9 +1,10 @@
 #pragma once
 #include"Player.h"
-#include"Action.h"
 #include <vector>
 #include <iostream>
 using namespace std;
+
+class Action;
 
 class Tile {
 public:
