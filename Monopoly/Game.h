@@ -24,6 +24,7 @@ private:
 	{
 		Player player;
 		unsigned char pos;
+		bool escape_card;
 	};
 	vector<unique_ptr<Tile>> m_field;
 	vector<Player_data> m_players;

@@ -53,14 +53,16 @@ vector<unique_ptr<Tile>> create_field(void)
 list<unique_ptr<Action>> create_chance_cards(void) {
 	list<unique_ptr<Action>> chance_cards;
 	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт",new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Advance to Illiois ave", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Pay poor tax of 15$", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Go back 3 spaces", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Advance token to the nearest railroad and pay owner twice the rental o which he/she is otherwise entitiled",
+												new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Advance token to nearest utility if unowned you may buy it from bank if OWNED throw dice and pay ownera total times the amount thrown",
+												new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Go directly to jail", new Move_Abs_Action(0))));
+	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Your building and loan matures", new Move_Abs_Action(0))));
 	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
-	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
-	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
-	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
-	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
-	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
-	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
-	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0)));
 	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
 	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
 	chance_cards.push_back(unique_ptr<Action>(new Chance_Card("Пройдите на старт", new Move_Abs_Action(0))));
@@ -120,16 +122,23 @@ unsigned short Game::getPlayersCount() {
 	return m_players.size();
 }
 void Game::move_player_int(int ind, int tiles_to_move) {
+	if ((m_players[ind].pos + tiles_to_move) / 40 > 1)
+		m_players[ind].player.claim_money(200);
+
 	m_players[ind].pos = (m_players[ind].pos+tiles_to_move) % 40;
 	m_field[m_players[ind].pos]->get_action().invoke(ind, *this);
 }
 void Game::move_player_abs(int ind, unsigned char abs_pos) {
+	if (m_players[ind].pos > abs_pos)
+		m_players[ind].player.claim_money(200);
 	m_players[ind].pos = abs_pos;
 	m_field[m_players[ind].pos]->get_action().invoke(ind, *this);
 }
 void Game::move_player_until(int ind, const std::function<bool(const Tile&)>& f){
 	while (!f(*(m_field[m_players[ind].pos]))) {
 		m_players[ind].pos = (m_players[ind].pos + 1) % m_field.size();
+		if (m_players[ind].pos == 0)
+			m_players[ind].player.claim_money(200);
 	}
 	m_field[m_players[ind].pos]->get_action().invoke(ind, *this);
 }
