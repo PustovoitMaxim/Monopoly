@@ -1,9 +1,14 @@
-#pragma once	
-class Player {
+#pragma once
+#include "AI.h"
+class Player
+{
 public:
-	void pay(unsigned short sum);
-	void claim_money(unsigned short sum);
 	Player();
+	AI& get_AI();
+	void pay(unsigned short sum);
+	void get(unsigned short sum);
+	short skokadenegnischeta();
 private:
-	unsigned short m_cash;
+	unique_ptr<AI> m_AI;
+	short m_money;
 };

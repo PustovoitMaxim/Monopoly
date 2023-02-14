@@ -30,7 +30,7 @@
     <ClCompile Include="Main.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Chance.cpp">
+    <ClCompile Include="AI.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,7 +50,7 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Chance.h">
+    <ClInclude Include="AI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
