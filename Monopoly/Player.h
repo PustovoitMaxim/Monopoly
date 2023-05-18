@@ -4,11 +4,14 @@ class Player
 {
 public:
 	Player();
-	AI& get_AI();
-	void pay(unsigned short sum);
-	void get(unsigned short sum);
-	short skokadenegnischeta();
+	const AI& get_AI();
+	void pay(int sum);
+	void get(int sum);
+	void pay2player(Player& p, int sum);
+	int skokadenegnischeta();
+	Player(const Player&) = delete;
+	Player& operator=(const Player&) = delete;
 private:
-	unique_ptr<AI> m_AI;
-	short m_money;
+	unique_ptr<const AI> m_AI;
+	int m_money;
 };

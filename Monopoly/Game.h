@@ -28,7 +28,17 @@ public:
 	pair<unsigned short, unsigned short> CountOfHousesAndHotels(Player& p);
 	unsigned char CheckingForNischeta(unsigned char current_player);
 	unsigned short GetPlayersAmount();
-	void log(ostream& s, unsigned char ind, int hod);
+	void log(ostream& s, unsigned char ind, int hod, pair<unsigned short, unsigned short>p);
+	vector<Street::StreetColors>WhichStreetsAreCapturedBy(Player& p);
+	bool IsStreetEmpty(Street::StreetColors color);
+	bool IsStreetOnlyMine(Street::StreetColors color, Player& p);
+	void ClearingOwnership(Player& p);
+	unsigned char get_pos_ind(unsigned char ind);
+	unsigned char get_pos_by_player(Player& p);
+	vector<unique_ptr<Tile>>& get_field();
+	vector<Street*>wanna_exchange(Player& player);
+	
+	bool has_player(unsigned char ind);
 private:
 	vector<unique_ptr<Tile>> m_field;
 	list<unique_ptr<Action>>m_chance;
@@ -36,7 +46,7 @@ private:
 	struct PlayerData
 	{
 		PlayerData();
-		Player player;
+		unique_ptr<Player> player;
 		unsigned char pos;
 		unsigned char prison_counter;
 		bool is_prison_denied;

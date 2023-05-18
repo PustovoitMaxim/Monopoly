@@ -1,9 +1,9 @@
 #include "Player.h"
-void Player::pay(unsigned short sum)
+void Player::pay(int sum)
 {
 	m_money -= sum;
 }
-void Player::get(unsigned short sum)
+void Player::get(int sum)
 {
 	m_money += sum;
 }
@@ -14,12 +14,20 @@ Player::Player() :
 
 }
 
-short Player::skokadenegnischeta()
+int Player::skokadenegnischeta()
 {
 	return m_money;
 }
 
-AI& Player::get_AI()
+const AI& Player::get_AI()
 {
 	return *m_AI;
+}
+
+
+
+void Player::pay2player(Player& p, int sum)
+{
+	pay(sum);
+	p.get(sum);
 }

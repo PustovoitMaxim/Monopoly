@@ -51,12 +51,13 @@ public:
 	bool get_pledge();
 	unsigned short get_price();
 	PropertyTile(unsigned short price, Tile_Type type, std::string caption);
-	void set_ownership(Player& p);
+	void set_ownership(Player* p);
+	string get_caption();
 private:
 	unsigned short m_price;
 	Player* m_ownership;
 	bool m_pledge;
-	std::string m_caption;
+	string m_caption;
 	const Tile_Type m_tile_type;
 
 };
@@ -84,6 +85,8 @@ public:
 	unsigned short get_rent(Game& game, unsigned char ind);
 	StreetColors get_color_type(void)const;
 	unsigned short get_houses();
+	void set_houses(unsigned short h);
+	StreetColors get_color() const;
 
 private:
 	unsigned char m_houses;

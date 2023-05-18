@@ -1,37 +1,70 @@
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 #include <random>
 #include "Game.h"
 #include "Action.h"
+#include "AI.h"
+#include"Player.h"
 using namespace std;
-using namespace sf;
+//using namespace sf;
+int infinite_games = 0;
 int main()
 {
-    Game game(4);
+    for (int i = 0; i < 10000; i++) {
+        cout << i  <<" " <<  infinite_games << endl;
+        int b = 4;
+        Game game(b);
+        std::srand(13);
 
-    random_device rd;     // Only used once to initialise (seed) engine
-    mt19937 rng(rd());    // Random-number engine used (Mersenne-Twister in this case)
-    uniform_int_distribution<int> uni(1, 6);// Guaranteed unbiased
-    unsigned char current_player = 0;
-    int a = 0;
-    while (true)
-    {
-        unsigned char dice1 = uni(rng);
-        unsigned char dice2 = uni(rng);
-        game.MovePlayer(dice1, dice2, current_player);
-        a++;;
-        game.log(cout, current_player, a);
-        unsigned char t = game.CheckingForNischeta(current_player);
-        if (game.GetPlayersAmount() <= 1)
+        unsigned char current_player = 0;
+        int a = 0;
+        while (true)
         {
-            cout << "Game Over";
-            break;
+            if (&game.get_player(current_player)) {
+                Request r = game.get_player(current_player).get_AI().exchange_request(game);
+                if (r.to_give != nullptr && r.to_give->get_ownership() != nullptr) {
+                    bool accepted = r.to_give->get_ownership()->get_AI().accept_request(r);
+                    if (accepted) {
+                        r.to_give->set_ownership(&game.get_player(current_player));
+                        game.get_player(current_player).pay(r.money_to_receive);
+                        r.to_give->get_ownership()->get(r.money_to_receive);
+                    }
+                }
+            }
+            if (a == 15000)
+            {
+                cout << "Infinite Game" << endl;
+                infinite_games++;
+                break;
+            }
+            if (game.has_player(current_player))
+            {
+                a++;
+            }
+            else
+            {
+                current_player = (current_player + 1) % b;
+                continue;
+            }
+            if (a == 623)
+                int qq = 0;
+            if (game.GetPlayersAmount() <= 1)
+            {
+                //cout << "Game Over" << endl;
+                break;
+            }
+            if (game.has_player(current_player))
+            {
+                pair<unsigned short, unsigned short>p = game.throw_dices();
+                game.MovePlayer(p.first, p.second, current_player);
+                unsigned char t = game.CheckingForNischeta(current_player);
+                game.log(cout, current_player, a, p);
+                current_player = t;
+            }
+            if (a == 655)
+                int qq = 0;
+
         }
-        current_player = t;
     }
-
-
-
-
 
 
 

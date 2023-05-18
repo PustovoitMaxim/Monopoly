@@ -113,7 +113,22 @@ unsigned short PropertyTile::get_price()
 	return m_price;
 }
 
-void PropertyTile::set_ownership(Player& p)
+void PropertyTile::set_ownership(Player* p)
 {
-	(*this).m_ownership = &p;
+	(*this).m_ownership = p;
+}
+
+void Street::set_houses(unsigned short h)
+{
+	m_houses = h;
+}
+
+Street::StreetColors Street::get_color() const
+{
+	return m_color_type;
+}
+
+string PropertyTile::get_caption()
+{
+	return m_caption;
 }
